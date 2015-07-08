@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     12173,        365]
-NotebookOptionsPosition[     11915,        352]
-NotebookOutlinePosition[     12260,        367]
-CellTagsIndexPosition[     12217,        364]
+NotebookDataLength[     16175,        455]
+NotebookOptionsPosition[     15917,        442]
+NotebookOutlinePosition[     16262,        457]
+CellTagsIndexPosition[     16219,        454]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,32 +24,14 @@ Cell[BoxData[{
   "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"bccBasis", "=", 
-   RowBox[{
-    RowBox[{"1", "/", "2"}], "*", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", 
-        RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", "1", ",", 
-        RowBox[{"-", "1"}]}], "}"}]}], "}"}]}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"fccBasis", "=", 
-   RowBox[{
-    RowBox[{"1", "/", "2"}], "*", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"1", ",", "1", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1", ",", "1"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "1"}], "}"}]}], "}"}]}]}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"w\[UDoubleDot]rfel", "=", 
@@ -174,13 +156,74 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"hklVektor", "[", 
     RowBox[{"h_", ",", "k_", ",", "l_"}], "]"}], "=", 
+   RowBox[{
+    RowBox[{"h", "*", 
+     RowBox[{"bccBasis", "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], "+", 
+    RowBox[{"k", "*", 
+     RowBox[{"bccBasis", "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], "+", 
+    RowBox[{"l", "*", 
+     RowBox[{"bccBasis", "[", 
+      RowBox[{"[", "3", "]"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"hklVektorPlot", "[", 
+    RowBox[{"h_", ",", "k_", ",", "l_"}], "]"}], "=", 
    RowBox[{"Graphics3D", "[", 
     RowBox[{"{", 
      RowBox[{"Green", ",", 
       RowBox[{"Thickness", "[", "0.016", "]"}], ",", 
       RowBox[{"vec", "@@", 
-       RowBox[{"{", 
-        RowBox[{"h", ",", "k", ",", "l"}], "}"}]}]}], "}"}], "]"}]}], 
+       RowBox[{"hklVektor", "[", 
+        RowBox[{"h", ",", "k", ",", "l"}], "]"}]}]}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"hklEbene", "[", 
+    RowBox[{"h_", ",", "k_", ",", "l_"}], "]"}], "=", 
+   RowBox[{"Release", "[", 
+    RowBox[{
+     RowBox[{"Hold", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"h", "+", "k", "+", "l"}], ")"}], "\[GreaterEqual]", "1"}], 
+        ",", 
+        RowBox[{"ContourPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"hklVektor", "[", 
+             RowBox[{"h", ",", "k", ",", "l"}], "]"}], ".", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "\[Equal]", 
+           RowBox[{
+            RowBox[{"Norm", "[", 
+             RowBox[{"hklVektor", "[", 
+              RowBox[{"h", ",", "k", ",", "l"}], "]"}], "]"}], "^", "2"}]}], 
+          ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "lm", ",", "lp"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"y", ",", "lm", ",", "lp"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"z", ",", "lm", ",", "lp"}], "}"}], ",", 
+          RowBox[{"ContourStyle", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"Cyan", ",", 
+             RowBox[{"Opacity", "[", "0.3", "]"}]}], "}"}]}], ",", 
+          RowBox[{"Lighting", "\[Rule]", "\"\<Neutral\>\""}], ",", 
+          RowBox[{"Mesh", "\[Rule]", "True"}]}], "]"}], ",", 
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{"vec", "[", 
+          RowBox[{"0", ",", "0", ",", "0"}], "]"}], "]"}]}], "]"}], "]"}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"lm", "\[Rule]", 
+        RowBox[{"-", "0.5"}]}], ",", 
+       RowBox[{"lp", "\[Rule]", "1.5"}]}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"spatProdukt", "=", 
@@ -206,6 +249,22 @@ Cell[BoxData[{
        RowBox[{"[", "i", "]"}], "]"}], ",", 
       RowBox[{"bccBasis", "[", 
        RowBox[{"[", "j", "]"}], "]"}]}], "]"}], "/", "spatProdukt"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fccBasis", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Normalize", "[", 
+      RowBox[{"rezVec", "[", 
+       RowBox[{
+        RowBox[{"i", "+", "1"}], ",", 
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{
+           RowBox[{"i", "+", "1"}], ",", "3"}], "]"}], "+", "1"}]}], "]"}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0", ",", "2", ",", "1"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -270,34 +329,6 @@ Cell[BoxData[{
         RowBox[{"vec", "[", 
          RowBox[{"0", ",", "0", ",", "0"}], "]"}]}], "}"}], "]"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"Manipulate", "[", 
-  RowBox[{
-   RowBox[{"Show", "[", 
-    RowBox[{"w\[UDoubleDot]rfel", ",", "w\[UDoubleDot]rfelPunkte", ",", 
-     RowBox[{"fccPunkte", "[", "dontShowReziprok", "]"}], ",", "bccPunkt", 
-     ",", "direkteBasis", ",", 
-     RowBox[{"reziprokeBasis", "[", "dontShowReziprok", "]"}], ",", 
-     RowBox[{"hklVektor", "[", 
-      RowBox[{"h", ",", "k", ",", "l"}], "]"}], ",", 
-     RowBox[{"GVektor", "[", 
-      RowBox[{"h", ",", "k", ",", "l"}], "]"}], ",", 
-     RowBox[{"Axes", "->", "True"}], ",", 
-     RowBox[{"AxesLabel", "\[Rule]", 
-      RowBox[{"{", 
-       RowBox[{"\"\<x\>\"", ",", "\"\<y\>\"", ",", "\"\<z\>\""}], "}"}]}], 
-     ",", 
-     RowBox[{"LabelStyle", "\[Rule]", 
-      RowBox[{"Directive", "[", 
-       RowBox[{"Bold", ",", "Medium"}], "]"}]}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"h", ",", "0", ",", "1", ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"k", ",", "0", ",", "1", ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"l", ",", "0", ",", "1", ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"dontShowReziprok", ",", "1", ",", "0", ",", 
-     RowBox[{"-", "1"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"theLegend", "=", 
    RowBox[{"Legend", "[", 
@@ -312,7 +343,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"{", 
               RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], "}"}], 
-         "]"}], ",", "\"\<Reale Gitterbasis\>\""}], "}"}], ",", 
+         "]"}], ",", "\"\<real basis\>\""}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"Graphics", "[", 
@@ -322,7 +353,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"{", 
               RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], "}"}], 
-         "]"}], ",", "\"\<Reziproke Gitterbasis\>\""}], "}"}], ",", 
+         "]"}], ",", "\"\<reciprocal basis\>\""}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"Graphics", "[", 
@@ -332,9 +363,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"{", 
               RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], "}"}], 
-         "]"}], ",", 
-        "\"\<Vektor (h,k,l) = h*\[EHat]x+k*\[EHat]y+l*\[EHat]z\>\""}], "}"}], 
-      ",", 
+         "]"}], ",", "\"\<vector [h,k,l] = h*a+k*b+l*c\>\""}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"Graphics", "[", 
@@ -344,11 +373,72 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"{", 
               RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], "}"}], 
-         "]"}], ",", "\"\<Vektor G=h*A+k*B+l*C\>\""}], "}"}]}], "}"}], 
+         "]"}], ",", "\"\<vector G=h*A+k*B+l*C\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Graphics", "[", 
+         RowBox[{"{", 
+          RowBox[{"Cyan", ",", 
+           RowBox[{"Disk", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], "}"}], 
+         "]"}], ",", "\"\<plance orthogonal to [hkl]\>\""}], "}"}]}], "}"}], 
     "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"Graphics", "[", "theLegend", "]"}]}], "Input",
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"Show", "[", 
+      RowBox[{"w\[UDoubleDot]rfel", ",", "w\[UDoubleDot]rfelPunkte", ",", 
+       RowBox[{"fccPunkte", "[", "dontShowReziprok", "]"}], ",", "bccPunkt", 
+       ",", "direkteBasis", ",", 
+       RowBox[{"reziprokeBasis", "[", "dontShowReziprok", "]"}], ",", 
+       RowBox[{"hklVektorPlot", "[", 
+        RowBox[{"h", ",", "k", ",", "l"}], "]"}], ",", 
+       RowBox[{"hklEbene", "[", 
+        RowBox[{"h", ",", "k", ",", "l"}], "]"}], ",", 
+       RowBox[{"GVektor", "[", 
+        RowBox[{"h", ",", "k", ",", "l"}], "]"}], ",", 
+       RowBox[{"Axes", "->", "True"}], ",", 
+       RowBox[{"AxesLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"\"\<x\>\"", ",", "\"\<y\>\"", ",", "\"\<z\>\""}], "}"}]}], 
+       ",", 
+       RowBox[{"LabelStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Bold", ",", "Medium"}], "]"}]}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"h", ",", "0", ",", "1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "0", ",", "1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"l", ",", "0", ",", "1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"dontShowReziprok", ",", "1", ",", "0", ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"Graphics", "[", "theLegend", "]"}]}], "}"}]}], "Input",
  CellChangeTimes->{
-  3.64477986289904*^9, {3.6447799400124507`*^9, 3.644779959666575*^9}}]
+  3.64477986289904*^9, {3.6447799400124507`*^9, 3.644779959666575*^9}, {
+   3.64533287903018*^9, 3.6453329254448347`*^9}, {3.645333108478304*^9, 
+   3.645333133166716*^9}, {3.645333212197236*^9, 3.645333286902509*^9}, {
+   3.6453334010950403`*^9, 3.645333409342512*^9}, {3.645333513806487*^9, 
+   3.6453335618472347`*^9}, {3.645333604118653*^9, 3.6453336052707186`*^9}, {
+   3.6453337548872766`*^9, 3.645333758078459*^9}, {3.645334058951668*^9, 
+   3.6453341133107767`*^9}, {3.6453344395914392`*^9, 3.645334720248492*^9}, {
+   3.6453347679532204`*^9, 3.645334811550714*^9}, {3.645334849688895*^9, 
+   3.6453348532240973`*^9}, {3.645334885368936*^9, 3.6453348987287*^9}, {
+   3.6453349905929546`*^9, 3.645335136969327*^9}, {3.645335175737544*^9, 
+   3.6453351966807423`*^9}, {3.6453352600573673`*^9, 
+   3.6453353082371225`*^9}, {3.645335362234211*^9, 3.645335365817416*^9}, {
+   3.6453354369054823`*^9, 3.6453354450249467`*^9}, {3.645335522762393*^9, 
+   3.64533556746595*^9}, {3.6453356736100206`*^9, 3.6453356866417665`*^9}, {
+   3.645335799860242*^9, 3.6453358403695593`*^9}, {3.6453358707482967`*^9, 
+   3.6453358906854367`*^9}, {3.6453359362900457`*^9, 3.645335948240729*^9}, {
+   3.6453360926579895`*^9, 3.645336185706311*^9}, {3.645336241356494*^9, 
+   3.645336460411023*^9}, {3.6453365418776827`*^9, 3.645336550234161*^9}, {
+   3.6453368176364555`*^9, 3.645336842988906*^9}, {3.6453373515869956`*^9, 
+   3.645337359091425*^9}}]
 },
 WindowSize->{2544, 1315},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -366,7 +456,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[545, 20, 11366, 330, 372, "Input"]
+Cell[545, 20, 15368, 420, 412, "Input"]
 }
 ]
 *)
