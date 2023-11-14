@@ -1,3 +1,5 @@
+﻿(*  x²+(5y/4-√ |x| )²=1   *)
+
 (* Content-type: application/mathematica *)
 
 (*** Wolfram Notebook File ***)
